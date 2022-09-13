@@ -112,9 +112,9 @@ public class Application {
 		System.out.println(a.equals(b));
 		System.out.println();
 		
-		// Menu app example
-		String[] team = new String[5];
-		
+		// Menu app example  commented out to allow labs to run	
+		/* String[] team = new String[5];
+	   
 		int decision = 0;
 		while (decision != -1) {
 			showMenu();
@@ -134,9 +134,175 @@ public class Application {
 				deleteAllTeamMembers(team);
 			}
 			
-		} 
+		} */
+		
+		// lab work
+		int[] arrayOld = new int[6];
+		arrayOld[0] = 1;
+		arrayOld[1] = 5;
+		arrayOld[2] = 2;
+		arrayOld[3] = 8;
+		arrayOld[4] = 13;
+		arrayOld[5] = 6;
+		
+		//More concise form...
+		
+		int[] array = {1,5,2,8,13,6};
+		System.out.println(array[0]);
+		System.out.println(array[array.length - 1]);
+		// System.out.println(array[6]); //exception
+		// System.out.println(array[-1]); //exception
+		System.out.println();
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+		
+		System.out.println();
+		for (int number : array) {
+			System.out.println(number);
+		}
+		System.out.println();
+		
+		double sum = 0;
+		for (int number : array) {
+			sum += number;
+		}
+		System.out.println(sum);
+		System.out.println();
+		
+		double average = sum/array.length;
+		System.out.println(average);
+		System.out.println();
+		
+		for (int number : array) {
+			if (number % 2 != 0) {
+				System.out.println(number);
+			}
+		}
+		System.out.println();
+		
+		String[] names = {"Sam", "Sally", "Thomas", "Robert"};
+		int sumOfLetters = 0;
+		for (String name2 : names) {
+			sumOfLetters += name2.length();
+		}
+		System.out.println(sumOfLetters);
+		System.out.println();
+		
+		printGreeting(names[0]);
+		System.out.println();
+		
+		String greeting = makeGeeting("Jake");
+		System.out.println(greeting);
+		System.out.println();
+		
+		if (stringLongerThanNumber("Bob", 7)) {
+			System.out.println("String is longer.");
+		} else {
+			System.out.println("String is shorter.");
+		}
+		System.out.println();
+		
+		System.out.println(isStringInArray(names, "Sam")); //true
+		System.out.println();
+		
+		System.out.println(findSmallestNumber(array));
+		System.out.println();
+		
+		double[] doubleArray = {45.7, 30.2, 67.3};
+		System.out.println(getAverage(doubleArray));
+		System.out.println();
+		
+		int[] nameLemgths = extractStringLengths(names);
+		for (int len : nameLemgths) {
+			System.out.println(len);
+		}
+		System.out.println();
+		
+		if (evenGreater(names)) {
+			System.out.println("Even is greater.");
+		} else {
+			System.out.println("Odd is greater.");
+		}
+		System.out.println();
+		
+		System.out.println(isPallendrone("Arf"));
+		System.out.println(isPallendrone("racecar"));
+		
 	}
 	
+	public static boolean isPallendrone(String string) {
+		for (int i = 0; i < string.length(); i++) {
+			if (string.charAt(i) != string.charAt(string.length() - i - 1)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private static boolean evenGreater(String[] names) {
+		int sumOfEven = 0;
+		int sumOfOdd = 0;
+		for (String name : names) {
+			if (name.length() % 2 == 0) {
+				sumOfEven += name.length();
+			} else {
+				sumOfOdd += name.length();
+			}
+		}
+		return sumOfEven > sumOfOdd; 
+	}
+
+	public static int[] extractStringLengths(String[] strings) {
+		int[] lengths = new int[strings.length];
+		for (int i=0; i < strings.length; i++) {
+			lengths[i] = strings[i].length();
+		}
+		return lengths;
+	}
+	
+	public static double getAverage(double[] numbers) {
+		double sum = 0;
+		for (double number : numbers) {
+			sum += number;
+		}
+		return sum / numbers.length;
+	}
+	
+	public static int findSmallestNumber(int[] numbers) {
+		int smallest = numbers[0];
+		for (int number : numbers) {
+			if (number < smallest) {
+				smallest = number;
+			}
+		}
+		return smallest;
+	}
+	
+	private static boolean isStringInArray(String[] names, String string) {
+		for (String name : names) {
+			if (name.equals(string)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean stringLongerThanNumber(String string, int i) {
+		return (string.length() > i);
+		
+	}
+
+	private static String makeGeeting(String string) {
+		
+		return "Greetings, " + string + "!";
+	}
+
+	private static void printGreeting(String string) {
+		System.out.println("Greetings, " + string + "!");
+		
+	}
+
 	public static boolean isValid(int input) {
 		if (input >= 0 && input < 5) {
 			return true;
